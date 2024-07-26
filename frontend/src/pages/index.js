@@ -25,7 +25,20 @@ export default function Home() {
                     background: 'white',
                     borderRadius: 24,
                     border: '1px black solid'
-                }}/>
+                }}>
+                    <input type="text" style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        outline: 'none',
+                        padding: '0 10px',
+                        fontSize: '32px',
+                        fontFamily: 'Inter',
+                        fontWeight: '400',
+                        color: '#8E8585',
+                        borderRadius: '24px'
+                    }} placeholder="email@.icloud.com"/>
+                </div>
                 <div style={{
                     width: 499,
                     height: 79,
@@ -35,7 +48,20 @@ export default function Home() {
                     background: 'white',
                     borderRadius: 24,
                     border: '1px black solid'
-                }}/>
+                }}>
+                    <input type="password" style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        outline: 'none',
+                        padding: '0 10px',
+                        fontSize: '32px',
+                        fontFamily: 'Inter',
+                        fontWeight: '400',
+                        color: '#8E8585',
+                        borderRadius: '24px'
+                    }} placeholder="password"/>
+                </div>
                 <div style={{
                     width: 197,
                     height: 73,
@@ -56,28 +82,6 @@ export default function Home() {
                     borderRadius: 24,
                     border: '1px black solid'
                 }}/>
-                <div style={{
-                    left: 720,
-                    top: 166,
-                    position: 'absolute',
-                    color: '#8E8585',
-                    fontSize: 32,
-                    fontFamily: 'Inter',
-                    fontWeight: '400',
-                    wordWrap: 'break-word'
-                }}>email@.icloud.com
-                </div>
-                <div style={{
-                    left: 720,
-                    top: 270,
-                    position: 'absolute',
-                    color: '#8E8585',
-                    fontSize: 32,
-                    fontFamily: 'Inter',
-                    fontWeight: '400',
-                    wordWrap: 'break-word'
-                }}>password
-                </div>
                 <div style={{
                     left: 1040,
                     top: 397,
