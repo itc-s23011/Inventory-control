@@ -1,0 +1,139 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.imageUpload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px; /* 固定幅 */
+    height: 500px; /* 固定高さ */
+    border: 1px solid #919191;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    overflow: hidden; /* 画像が枠を超えないようにする */
+    position: relative;
+}
+
+.fileInput {
+    display: none; /* 非表示にする */
+}
+
+.imageUpload span {
+    color: #999;
+    position: absolute;
+}
+
+.previewImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* アスペクト比を維持しながら500px×500pxに収める */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+}
+
+.formGroup.row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.formGroupItem {
+    margin-left: 50px; /* スペースを調整 */
+    margin-right: 50px; /* スペースを調整 */
+    margin-bottom: 15px;
+}
+
+.formGroupItem label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px; /* フォントサイズを調整 */
+}
+
+.description {
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.formGroupItem label.description {
+    font-size: 14px; /* 小さめのフォントサイズ */
+}
+
+.formGroup input, .formGroup select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.buttonGroup button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #0070f3;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.buttonGroup button:hover {
+    background-color: #005bb5;
+}
+
+.buttonGroup button[type="button"] {
+    background-color: #ccc;
+}
+
+.buttonGroup button[type="button"]:hover {
+    background-color: #999;
+}
+
+
+
+.squareFrame {
+    width: 500px;
+    height: 150px;
+    border: 1px solid #919191; /* 枠線の色と幅 */
+    background-color: #ffffff; /* 背景色（必要に応じて変更） */
+    margin-top: 10px; /* 上部のマージン */
+    display: flex; /* コンテンツの中央揃え */
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* テキストを中央揃え */
+    font-size: 14px; /* フォントサイズを調整 */
+    color: #333; /* テキストの色 */
+    padding: 10px; /* 内側の余白 */
+    box-sizing: border-box; /* 枠のサイズにパディングを含める */
+    overflow: hidden; /* テキストが枠を超えないようにする */
+    white-space: pre-wrap; /* テキストの折り返しをサポート */
+}
+
+
+.error {
+    color: red;
+}
