@@ -38,8 +38,8 @@ const Consumables = () => {
   return (
     <>
       <Head>
-        <title>消耗品管理</title>
-        <meta name="description" content="消耗品管理システム" />
+        <title>在庫一覧</title>
+        <meta name="description" content="在庫一覧" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
