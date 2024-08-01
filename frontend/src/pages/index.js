@@ -1,3 +1,4 @@
+// テスト用
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -15,99 +16,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{" "}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+      <div style={{width: 1280, height: 832, position: 'relative', background: 'white'}}>
+  <div style={{width: 499, height: 79, left: 390, top: 146, position: 'absolute', background: 'white', border: '1px black solid'}} />
+  <div style={{width: 499, height: 79, left: 390, top: 252, position: 'absolute', background: 'white', border: '1px black solid'}} />
+  <div style={{width: 197, height: 73, left: 390, top: 380, position: 'absolute', background: 'white', border: '1px black solid'}} />
+  <div style={{width: 197, height: 73, left: 692, top: 380, position: 'absolute', background: 'white', border: '1px black solid'}} />
+  <div style={{left: 416, top: 166, position: 'absolute', color: '#8E8585', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>メールアドレス</div>
+  <div style={{left: 416, top: 273, position: 'absolute', color: '#8E8585', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>パスワード</div>
+  <div style={{left: 727, top: 397, position: 'absolute', color: '#2B2828', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>ログイン</div>
+  <div style={{left: 425, top: 397, position: 'absolute', color: '#2B2828', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>新規登録</div>
+  <div style={{width: 499, height: 48, left: 390, top: 500, position: 'absolute', background: '#FF070C'}} />
+  <div style={{width: 499, height: 48, left: 390, top: 595, position: 'absolute', background: '#70CBF2'}} />
+  <div style={{width: 499, height: 48, left: 390, top: 690, position: 'absolute', background: 'black'}} />
+  <div style={{left: 587, top: 505, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Google</div>
+  <div style={{left: 587, top: 600, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>Twitter</div>
+  <div style={{left: 588, top: 694, position: 'absolute', color: 'white', fontSize: 32, fontFamily: 'Inter', fontWeight: '400', wordWrap: 'break-word'}}>GitHub</div>
+</div>
       </main>
     </>
   );
