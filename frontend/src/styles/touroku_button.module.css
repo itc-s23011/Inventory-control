@@ -1,0 +1,14 @@
+.touroku_button {
+    width: 150px;
+    height: 40px;
+    left: 60px;
+    top: 240px;
+    position: absolute;
+    background-color: white;
+    color: #2B2828;
+    border-radius: 55px;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}

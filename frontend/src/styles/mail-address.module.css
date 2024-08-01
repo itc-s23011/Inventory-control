@@ -1,0 +1,16 @@
+.mail_address {
+    width: 350px;
+    height: 49px;
+    left: 60px;
+    top: 50px;
+    padding: 25px;
+    position: absolute;
+    color: #8E8585;
+    border-radius: 54px;
+    font-size: 18px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+    border-color: white;
+    background-color: whitesmoke;
+}

@@ -1,0 +1,14 @@
+.login_button {
+    width: 150px;
+    height: 40px;
+    left: 260px;
+    top: 240px;
+    background-color: white;
+    border-radius: 54px;
+    position: absolute;
+    color: #2B2828;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
