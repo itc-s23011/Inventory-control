@@ -32,7 +32,7 @@ const Consumables = () => {
   };
 
   const handleAddConsumable = () => {
-    router.push(""); // +ボタンを押したら、とぶurl
+    router.push(""); 
   };
 
   return (
