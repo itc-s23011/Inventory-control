@@ -1,12 +1,11 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import MailAddress from "../../Login/mail-address";
-import GoogleButton from "../../Login/google-button";
+import AccountButton from "../../Login/account-button";
 import LoginButton from "../../Login/login-button";
 import TourokuButton from "../../Login/touroku-button";
-import TwitterButton from "../../Login/twitter-button";
-import GitHubButton from "../../Login/github-button";
-import Login from "../../Login/password";
+import LoginForm from "../../Login/loginform";
+import Comment from "../../Login/comment";
+
 
 
 export default function Home() {
@@ -20,13 +19,8 @@ export default function Home() {
             </Head>
             <main className={`${styles.main}`}>
                 <div className={styles.divdiv}>
-
-                    {/*--メールアドレス--*/}
-                    <MailAddress />
-
-
-                    {/*--パスワード（内容の表示・非表示）--*/}
-                    <Login />
+                    {/*--ログインフォーム--*/}
+                    <LoginForm />
 
                     {/*--ログインボタン--*/}
                     <LoginButton />
@@ -35,15 +29,10 @@ export default function Home() {
                     <TourokuButton />
 
                     {/*--文章--*/}
+                    <Comment />
 
                     {/*--google--*/}
-                    <GoogleButton />
-
-                    {/*--twitter--*/}
-                    <TwitterButton />
-
-                    {/*--github--*/}
-                    <GitHubButton />
+                    <AccountButton />
 
                 </div>
             </main>
