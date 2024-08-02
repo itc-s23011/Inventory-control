@@ -2,7 +2,6 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import AccountButton from "../../Login/account-button";
 import LoginButton from "../../Login/login-button";
-import TourokuButton from "../../Login/touroku-button";
 import LoginForm from "../../Login/loginform";
 import Comment from "../../Login/comment";
 
@@ -22,11 +21,8 @@ export default function Home() {
                     {/*--ログインフォーム--*/}
                     <LoginForm />
 
-                    {/*--ログインボタン--*/}
+                    {/*--新規登録、ログインボタン--*/}
                     <LoginButton />
-
-                    {/*--新規登録ボタン--*/}
-                    <TourokuButton />
 
                     {/*--文章--*/}
                     <Comment />

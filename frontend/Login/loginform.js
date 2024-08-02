@@ -16,6 +16,7 @@ const LoginForm = () => {
         <div>
 
             {/*-----メールアドレス-----*/}
+            <p className={styles.email_comment}>Email</p>
             <input
                 className={styles.mail_address}
                 type="text"
@@ -23,6 +24,7 @@ const LoginForm = () => {
             />
 
             {/*-----パスワード(内容表示・非表示機能付き)-----*/}
+            <p className={styles.email_comment2}>password</p>
             <input
                 type={isRevealPassword ? "text" : "password"}
                 placeholder="password"

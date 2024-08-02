@@ -1,12 +1,30 @@
 .login_button {
-    width: 150px;
+    width: 350px;
     height: 40px;
-    left: 260px;
-    top: 240px;
-    background-color: white;
+    left: 60px;
+    top: 220px;
+    background-color: deepskyblue;
     border-radius: 54px;
+    border-color: white;
     position: absolute;
-    color: #2B2828;
+    color: white;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+
+}
+
+.touroku_button {
+    width: 350px;
+    height: 40px;
+    left: 60px;
+    top: 270px;
+    position: absolute;
+    background-color: black;
+    color: white;
+    border-radius: 55px;
+    border-color: white;
     font-size: 20px;
     font-family: Inter;
     font-weight: 400;
