@@ -27,7 +27,7 @@ const LoginForm = () => {
             <p className={styles.email_comment2}>password</p>
             <input
                 type={isRevealPassword ? "text" : "password"}
-                placeholder="password"
+                placeholder="123456789"
                 className={styles.password_text}
             />
             <span
