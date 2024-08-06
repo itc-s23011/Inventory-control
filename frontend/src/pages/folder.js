@@ -21,10 +21,12 @@ const Folder = () => {
     // フォルダ保存ボタンがクリックされたときにフォルダ名を保存し、入力フィールドをクリアする関数
     const handleSaveClick = () => {
         // フォルダ名が空でなく、既に保存されていない場合
+        if (folderName && !savedFolders.includes(folderName)) {       
             setSavedFolders([...savedFolders, folderName]); // フォルダ名を保存
             setFolderName(''); // 入力フィールドをクリア
             setIsInputVisible(false); // 入力フィールドを非表示
-        };
+        }
+    };
 
     // キャンセルボタンがクリックされたときに呼ばれる関数
     const handleCancelClick = () => {
@@ -54,10 +56,11 @@ const Folder = () => {
                     <> {/* React のフラグメントを使用 */}
                         <input 
                             type="text" 
-                            placeholder="フォルダ名を入力" 
+                            placeholder="フォルダ名を入力(20字以内)"                             
                             value={folderName}
                             onChange={handleInputChange}
                             className={styles.inputField}
+                            maxLength="20" // 文字数制限を追加
                         />
                         <div className={styles.buttonGroup}> {/*変更 追加*/}
                         <button 

@@ -73,11 +73,11 @@
 /* 保存されたフォルダのスタイル */
 .savedFolder {
     padding: 10px;                   /* 内側のスペースを10pxに設定 */
-    font-size: 16px;                 /* フォントサイズを16pxに設定 */
+    font-size: 18px;                 /* フォントサイズを16pxに設定 */
     border: 1px solid #ccc;          /* 薄いグレーの境界線を追加 */
     border-radius: 5px;              /* 角を5pxの半径で丸める */
     margin-top: 5px;                 /* 上に5pxのマージンを追加（リストアイテムとの間隔） */
-    width: 50%;                      /* 幅を50%に設定（中央寄せにするため） */
+    width: 35%;                      /* 幅を50%に設定（中央寄せにするため） */
     display: flex;                   /* フレックスボックスを使用してレイアウトを制御 */
     text-align: left;                /* テキストを左寄せに設定 */
 }
