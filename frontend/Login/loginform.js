@@ -3,8 +3,6 @@ import {useState} from "react";
 import styles from "@/styles/loginform.module.css"
 
 
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 const LoginForm = () => {
@@ -15,7 +13,7 @@ const LoginForm = () => {
     return (
         <div>
 
-            {/*-----メールアドレス-----*/}
+            {/*-----メールアドレス記入欄-----*/}
             <p className={styles.email_comment}>Email</p>
             <input
                 className={styles.mail_address}
@@ -23,7 +21,7 @@ const LoginForm = () => {
                 placeholder="email@icloud.com"
             />
 
-            {/*-----パスワード(内容表示・非表示機能付き)-----*/}
+            {/*-----パスワード記入欄(内容表示・非表示機能付き)-----*/}
             <p className={styles.email_comment2}>password</p>
             <input
                 type={isRevealPassword ? "text" : "password"}
@@ -40,6 +38,21 @@ const LoginForm = () => {
                 <i className="fas fa-eye-slash"/>
             )}
         </span>
+
+            {/*「ログイン」ボタン*/}
+            <button
+                type="button"
+                className={styles.login_button}
+            >ログイン
+            </button>
+
+            {/*「アカウント作成」ボタン*/}
+            <button
+                className={styles.touroku_button}
+                type="button"
+            >アカウントを作成
+            </button>
+
         </div>
 
 
