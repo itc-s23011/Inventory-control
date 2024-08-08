@@ -38,7 +38,7 @@ const InventoryList = () => {
   };
 
   const handleAddItem = () => {
-    router.push("/add-item"); // ＋ボタンをクリックすると、とぶUrl。
+    router.push("/add-item"); // ＋ボタンをクリックすると、在庫登録画面のページに遷移。
   };
 
   return (
