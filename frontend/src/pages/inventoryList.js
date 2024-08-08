@@ -55,7 +55,7 @@ const InventoryList = () => {
             <Link href="/">
               <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', cursor: 'pointer' }}>←</div>
             </Link>
-            <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400' }}>{category}</div> // 在庫登録した在庫のカテゴリー名を表示。
+            <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400' }}>{category}</div> 
             <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', cursor: 'pointer' }} onClick={handleAddItem}>＋</div>
           </div>
           <div className={styles.searchContainer} style={{ left: '148px', top: '132px' }}>
@@ -89,4 +89,5 @@ const InventoryList = () => {
   );
 }
 
+// 58行目、在庫登録した在庫のカテゴリー名を表示。 
 export default InventoryList;
