@@ -1,0 +1,93 @@
+.password_text {
+    width: 350px;
+    height: 49px;
+    left: 60px;
+    top: 140px;
+    padding: 25px;
+    position: absolute;
+    border-radius: 54px;
+    color: #8E8585;
+    font-size: 18px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+    letter-spacing: 1px;
+    border-color: white;
+    background-color: whitesmoke;
+    outline: none;
+}
+.password_text:focus {
+    border-color: cornflowerblue;
+}
+
+.password_parts {
+    position: absolute;
+    left: 360px;
+    top: 154px;
+    color: #747474;
+}
+
+.mail_address {
+    width: 350px;
+    height: 49px;
+    left: 60px;
+    top: 50px;
+    padding: 25px;
+    position: absolute;
+    color: #8E8585;
+    border-radius: 54px;
+    font-size: 18px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+    border-color: white;
+    background-color: whitesmoke;
+    outline: none;
+}
+
+.mail_address:focus {
+    border-color: cornflowerblue;
+}
+
+.email_comment {
+     transform: translateY(15px) translateX(55px);
+     color: grey;
+ }
+
+.email_comment2 {
+    transform: translateY(80px) translateX(55px);
+    color: grey;
+}
+
+.login_button {
+    width: 350px;
+    height: 40px;
+    left: 60px;
+    top: 220px;
+    background-color: deepskyblue;
+    border-radius: 54px;
+    border-color: white;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+
+}
+
+.touroku_button {
+    width: 350px;
+    height: 40px;
+    left: 60px;
+    top: 270px;
+    position: absolute;
+    background-color: black;
+    color: white;
+    border-radius: 55px;
+    border-color: white;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
