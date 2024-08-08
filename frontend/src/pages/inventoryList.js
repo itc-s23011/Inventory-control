@@ -13,14 +13,20 @@ const InventoryList = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const router = useRouter();
+  const { category } = router.query;
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedItems = JSON.parse(localStorage.getItem("items")) || [];
       setItems(storedItems);
-      setFilteredItems(storedItems);
+      if (category) {
+        const filtered = storedItems.filter(item => item.category === category);
+        setFilteredItems(filtered);
+      } else {
+        setFilteredItems(storedItems);
+      }
     }
-  }, []);
+  }, [category]);
 
   const handleSearch = (event) => {
     const query = event.target.value;
@@ -49,7 +55,7 @@ const InventoryList = () => {
             <Link href="/">
               <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', cursor: 'pointer' }}>←</div>
             </Link>
-            <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400' }}>在庫一覧</div>
+            <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400' }}>{category}</div>
             <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', cursor: 'pointer' }} onClick={handleAddItem}>＋</div>
           </div>
           <div className={styles.searchContainer} style={{ left: '148px', top: '132px' }}>
