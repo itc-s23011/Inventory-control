@@ -11,8 +11,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
-    height: 500px;
+    width: 500px; /* 固定幅 */
+    height: 500px; /* 固定高さ */
     border: 1px solid #919191;
     margin-bottom: 20px;
     cursor: pointer;
@@ -20,8 +20,6 @@
     overflow: hidden;
     position: relative;
 }
-
-
 
 .fileInput {
     display: none;
