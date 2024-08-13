@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
-import { collection, addDoc } from 'firebase/firestore';
-import { useRouter } from 'next/navigation';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
-import styles from '../styles/Register.module.css';
+import styles from '../styles/Modify.module.css';
 
-const Register = () => {
+const Modify = () => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [description, setDescription] = useState('');
@@ -15,8 +15,10 @@ const Register = () => {
     const [error, setError] = useState(null);
     const [squareContent, setSquareContent] = useState('');
     const [user, setUser] = useState(null);
+    const [inventoryId, setInventoryId] = useState(null);
 
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         // ユーザーの認証状態を監視
@@ -25,6 +27,34 @@ const Register = () => {
         });
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        // URLから在庫IDを取得し、データをロードする
+        const id = searchParams.get('id');
+        if (id) {
+            setInventoryId(id);
+            loadInventoryData(id);
+        }
+    }, [searchParams]);
+
+    const loadInventoryData = async (id) => {
+        try {
+            const inventoryRef = doc(db, 'users', user.uid, 'inventory', id);
+            const docSnap = await getDoc(inventoryRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                setName(data.name);
+                setQuantity(data.quantity);
+                setDescription(data.description);
+                setSquareContent(data.squareContent);
+            } else {
+                setError('在庫が見つかりません');
+            }
+        } catch (error) {
+            console.error('Error loading document: ', error);
+            setError('データの読み込みに失敗しました');
+        }
+    };
 
     const handleImageSelect = (event) => {
         const files = event.target.files;
@@ -42,18 +72,18 @@ const Register = () => {
         }
 
         try {
-            const inventoryRef = collection(db, 'users', user.uid, 'inventory');
-            await addDoc(inventoryRef, {
+            const inventoryRef = doc(db, 'users', user.uid, 'inventory', inventoryId);
+            await updateDoc(inventoryRef, {
                 name,
                 quantity,
                 description,
                 squareContent,
             });
-            alert('登録完了');
+            alert('更新完了');
             router.push('/Test');
         } catch (error) {
-            console.error('Error adding document: ', error);
-            setError('登録に失敗しました');
+            console.error('Error updating document: ', error);
+            setError('更新に失敗しました');
         }
     };
 
@@ -82,10 +112,8 @@ const Register = () => {
                     className={styles.fileInput}
                 />
                 {selectedImage ? (
-                    <>
-                    <img src={selectedImage} alt="Selected" className={styles.previewImage}/>
-                    </>
-                    ) : (
+                    <img src={selectedImage} alt="Selected" className={styles.previewImage} />
+                ) : (
                     <span>画像追加</span>
                 )}
             </div>
@@ -132,7 +160,7 @@ const Register = () => {
                 </div>
                 <div className={styles.buttonGroup}>
                     <button type="button" onClick={handleCancel}>キャンセル</button>
-                    <button type="submit">登録完了</button>
+                    <button type="submit">変更</button>
                 </div>
             </form>
             {error && <p className={styles.error}>{error}</p>}
@@ -140,4 +168,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Modify;
