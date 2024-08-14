@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase'; // パスを適切に調整
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import s from '../styles/SignIn.module.css';
 import {Inter} from "next/font/google";
 import styles from "@/styles/loginform.module.css";
@@ -25,7 +25,7 @@ const SignIn = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             alert('ログイン成功');
-            router.push('/home'); // ログイン成功後のリダイレクト
+            router.push('/Folder'); // ログイン成功後のリダイレクト
         } catch (error) {
             setError(error.message);
         }
