@@ -1,30 +1,32 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
-import { db, auth } from '../firebase';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
+import { db, auth } from '@/firebase';
 import styles from '../styles/Register.module.css';
 
 const Register = () => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState('食品');
     const [selectedImage, setSelectedImage] = useState(null);
     const [error, setError] = useState(null);
     const [squareContent, setSquareContent] = useState('');
     const [user, setUser] = useState(null);
 
     const router = useRouter();
+    const { folder } = router.query;
 
     useEffect(() => {
         // ユーザーの認証状態を監視
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
         });
+
         return () => unsubscribe();
     }, []);
+
+    const currentFolder = folder || 'defaultFolder'; // 必要に応じて適切なデフォルト値に変更
 
     const handleImageSelect = (event) => {
         const files = event.target.files;
@@ -48,9 +50,11 @@ const Register = () => {
                 quantity,
                 description,
                 squareContent,
+                folder: currentFolder,  // folderを使用
+                imageUrl: selectedImage || '',
             });
             alert('登録完了');
-            router.push('/Test');
+            router.push(`/inventoryList?folder=${encodeURIComponent(folder)}`); // 適切な遷移先に変更
         } catch (error) {
             console.error('Error adding document: ', error);
             setError('登録に失敗しました');
@@ -83,9 +87,9 @@ const Register = () => {
                 />
                 {selectedImage ? (
                     <>
-                    <img src={selectedImage} alt="Selected" className={styles.previewImage}/>
+                        <img src={selectedImage} alt="Selected" className={styles.previewImage}/>
                     </>
-                    ) : (
+                ) : (
                     <span>画像追加</span>
                 )}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { auth } from '../firebase'; // パスを適切に調整
+import { auth } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import s from '../styles/SignIn.module.css';
@@ -25,7 +25,7 @@ const SignIn = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             alert('ログイン成功');
-            router.push('/home'); // ログイン成功後のリダイレクト
+            router.push('/folder'); // ログイン成功後のリダイレクト
         } catch (error) {
             setError(error.message);
         }
