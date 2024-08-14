@@ -1,15 +1,29 @@
-import {Inter} from "next/font/google";
-import {useState} from "react";
-import styles from "@/styles/loginform.module.css"
-
+import { Inter } from "next/font/google";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "../src/styles/loginform.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const LoginForm = () => {
     const [isRevealPassword, setIsRevealPassword] = useState(false);
+    const router = useRouter();
+
     const togglePassword = () => {
         setIsRevealPassword((prevState) => !prevState);
     };
+
+    const handleLogin = () => {
+        console.log("handleLogin");
+        router.push("/Folder");
+        // router.push("/");
+    };
+
+    const handleSignUp = () => {
+        router.push("/SignUp")
+    }
+
+
     return (
         <div>
 
@@ -43,19 +57,22 @@ const LoginForm = () => {
             <button
                 type="button"
                 className={styles.login_button}
-            >ログイン
+                onClick={handleLogin}
+            >
+                ログイン
             </button>
 
             {/*「アカウント作成」ボタン*/}
             <button
                 className={styles.touroku_button}
                 type="button"
-            >アカウントを作成
+                onClick={handleSignUp}
+            >
+                アカウントを作成
             </button>
 
         </div>
+    );
+};
 
-
-    )
-}
-export default LoginForm
+export default LoginForm;

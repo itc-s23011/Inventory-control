@@ -1,10 +1,9 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
-import { db, auth } from '../firebase';
+import { db, auth, storage } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import styles from '../styles/Register.module.css';
 
 const Register = () => {
@@ -19,7 +18,6 @@ const Register = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // ユーザーの認証状態を監視
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
         });
@@ -29,8 +27,7 @@ const Register = () => {
     const handleImageSelect = (event) => {
         const files = event.target.files;
         if (files.length > 0) {
-            const selectedImageURL = URL.createObjectURL(files[0]);
-            setSelectedImage(selectedImageURL);
+            setSelectedImage(files[0]);
         }
     };
 
@@ -42,15 +39,24 @@ const Register = () => {
         }
 
         try {
+            let imageUrl = '';
+
+            if (selectedImage) {
+                const imageRef = ref(storage, `images/${Date.now()}_${selectedImage.name}`);
+                const snapshot = await uploadBytes(imageRef, selectedImage);
+                imageUrl = await getDownloadURL(snapshot.ref);
+            }
+
             const inventoryRef = collection(db, 'users', user.uid, 'inventory');
             await addDoc(inventoryRef, {
                 name,
                 quantity,
                 description,
                 squareContent,
+                imageUrl // 画像のURLも保存
             });
             alert('登録完了');
-            router.push('/Test');
+            router.push('/inventoryList'); // 在庫一覧に戻る
         } catch (error) {
             console.error('Error adding document: ', error);
             setError('登録に失敗しました');
@@ -82,10 +88,8 @@ const Register = () => {
                     className={styles.fileInput}
                 />
                 {selectedImage ? (
-                    <>
-                    <img src={selectedImage} alt="Selected" className={styles.previewImage}/>
-                    </>
-                    ) : (
+                    <img src={URL.createObjectURL(selectedImage)} alt="Selected" className={styles.previewImage} />
+                ) : (
                     <span>画像追加</span>
                 )}
             </div>
