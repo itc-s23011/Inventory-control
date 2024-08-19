@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { db, auth } from '@/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, auth, storage } from '@/firebase';
 import styles from '../styles/Register.module.css';
 
 const Register = () => {
@@ -18,7 +19,6 @@ const Register = () => {
     const { folder } = router.query;
 
     useEffect(() => {
-        // ユーザーの認証状態を監視
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
         });
@@ -26,13 +26,23 @@ const Register = () => {
         return () => unsubscribe();
     }, []);
 
-    const currentFolder = folder || 'defaultFolder'; // 必要に応じて適切なデフォルト値に変更
+    const currentFolder = folder || 'defaultFolder';
 
     const handleImageSelect = (event) => {
         const files = event.target.files;
         if (files.length > 0) {
-            const selectedImageURL = URL.createObjectURL(files[0]);
-            setSelectedImage(selectedImageURL);
+            setSelectedImage(files[0]);
+        }
+    };
+    const uploadImageAndGetUrl = async (file) => {
+        try {
+            const storageRef = ref(storage, `images/${file.name}`);
+            await uploadBytes(storageRef, file);
+            const downloadUrl = await getDownloadURL(storageRef);
+            return downloadUrl;
+        } catch (error) {
+            console.error('Image upload failed:', error);
+            throw new Error('画像のアップロードに失敗しました');
         }
     };
 
@@ -44,17 +54,22 @@ const Register = () => {
         }
 
         try {
+            let imageUrl = '';
+            if (selectedImage) {
+                imageUrl = await uploadImageAndGetUrl(selectedImage);
+            }
+
             const inventoryRef = collection(db, 'users', user.uid, 'inventory');
             await addDoc(inventoryRef, {
                 name,
                 quantity,
                 description,
                 squareContent,
-                folder: currentFolder,  // folderを使用
-                imageUrl: selectedImage || '',
+                folder: currentFolder,
+                imageUrl,
             });
             alert('登録完了');
-            router.push(`/inventoryList?folder=${encodeURIComponent(folder)}`); // 適切な遷移先に変更
+            router.push(`/inventoryList?folder=${encodeURIComponent(folder)}`);
         } catch (error) {
             console.error('Error adding document: ', error);
             setError('登録に失敗しました');
@@ -87,7 +102,7 @@ const Register = () => {
                 />
                 {selectedImage ? (
                     <>
-                        <img src={selectedImage} alt="Selected" className={styles.previewImage}/>
+                        <img src={URL.createObjectURL(selectedImage)} alt="Selected" className={styles.previewImage}/>
                     </>
                 ) : (
                     <span>画像追加</span>

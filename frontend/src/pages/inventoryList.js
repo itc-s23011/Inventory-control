@@ -4,6 +4,9 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 import styles from "@/styles/inventoryList.module.css";
 import { Inter } from "next/font/google";
+import { db, auth } from '@/firebase';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,31 +16,46 @@ const InventoryList = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const router = useRouter();
   const { folder } = router.query;
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedItems = JSON.parse(localStorage.getItem("items")) || [];
-      setItems(storedItems);
-      if (folder) {
-        const filtered = storedItems.filter(item => item.folder === folder);
-        setFilteredItems(filtered);
-      } else {
-        setFilteredItems(storedItems);
+    const unsubscribeAuth = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        const itemsRef = collection(db, 'users', currentUser.uid, 'inventory');
+        const q = folder ? query(itemsRef, where("folder", "==", folder)) : itemsRef;
+
+        const unsubscribeFirestore = onSnapshot(q, (snapshot) => {
+          const fetchedItems = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }));
+          setItems(fetchedItems);
+          setFilteredItems(fetchedItems);
+        });
+
+        return () => {
+          unsubscribeFirestore();
+        };
       }
-    }
+    });
+
+    return () => {
+      unsubscribeAuth();
+    };
   }, [folder]);
 
   const handleSearch = (event) => {
-    const query = event.target.value;
+    const query = event.target.value.toLowerCase();
     setSearchQuery(query);
     const filtered = items.filter((item) =>
-        item.name.includes(query)
+        item.name.toLowerCase().includes(query)
     );
     setFilteredItems(filtered);
   };
 
   const handleAddItem = () => {
-    router.push(`/Register?folder=${folder}`); // folderをクエリパラメータとして登録画面に渡す
+    router.push(`/Register?folder=${folder}`);
   };
 
   return (
@@ -67,10 +85,19 @@ const InventoryList = () => {
               />
             </div>
             {filteredItems.map((item, index) => (
-                <div key={index} className={styles.item} style={{ left: `${144 + (index % 3) * 216}px`, top: `${253 + Math.floor(index / 3) * 298}px` }}>
-                  <div className={styles.itemBox} style={{ top: '62px' }} />
+                <div key={item.id} className={styles.item} style={{ left: `${144 + (index % 3) * 216}px`, top: `${253 + Math.floor(index / 3) * 298}px` }}>
+                  <div className={styles.itemBox} style={{ top: '62px', position: 'relative', width: '128px', height: '132px' }}>
+                    {item.imageUrl && (
+                        <Image
+                            src={item.imageUrl}
+                            alt={item.name}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                        />
+                    )}
+                  </div>
                   <div className={styles.itemName} style={{ left: '32px', top: '7px' }}>{item.name}</div>
-                  <div className={styles.itemStock} style={{ left: '34px', top: '213px' }}>在庫数: {item.stock}</div>
+                  <div className={styles.itemStock} style={{ left: '34px', top: '213px' }}>在庫数: {item.quantity}</div>
                   <div className={styles.itemBorder} style={{ left: '7px', top: '0px' }} />
                   <div className={styles.horizontalLine} style={{ left: '4px', top: '248px' }}></div>
                 </div>
@@ -79,6 +106,6 @@ const InventoryList = () => {
         </main>
       </>
   );
-}
+};
 
 export default InventoryList;
