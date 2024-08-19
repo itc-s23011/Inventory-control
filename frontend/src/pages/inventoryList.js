@@ -69,7 +69,7 @@ const InventoryList = () => {
         <main className={`${styles.main} ${inter.className}`}>
           <div className={styles.container}>
             <div className={styles.header}>
-              <Link href="/">
+              <Link href="/folder">
                 <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400', cursor: 'pointer' }}>←</div>
               </Link>
               <div style={{ color: 'black', fontSize: 40, fontFamily: 'Inter', fontWeight: '400' }}>{folder}</div>
