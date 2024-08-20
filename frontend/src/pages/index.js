@@ -79,7 +79,6 @@ const SignIn = () => {
                 {error && <p className={s.error}>{error}</p>}
 
                 <Comment/>
-
                 <AccountButton/>
 
             </div>
